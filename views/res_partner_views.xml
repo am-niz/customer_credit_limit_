@@ -1,0 +1,14 @@
+<odoo>
+  <data>
+    <record id="res_partner_form_credit_limit" model="ir.ui.view">
+      <field name="name">res.partner.inherit.credit.limit</field>
+      <field name="model">res.partner</field>
+      <field name="inherit_id" ref="base.view_partner_form"/>
+      <field name="arch" type="xml">
+        <xpath expr="//group[@name='sale']" postition="inside">
+          <field name="credit_limit"/>
+        </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

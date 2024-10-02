@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_sale_order_wizard_line_id,access_sale_order_wizard_line,model_sale_order_wizard_line,base.group_user,1,1,1,1
+access_sale_order_wizard_id,access_sale_order_wizard,model_sale_order_wizard,base.group_user,1,1,1,1
+access_uninvoiced_wizard_line_id,access_uninvoiced_wizard_line,model_uninvoiced_wizard_line,base.group_user,1,1,1,1
+access_approval_request_id,access_approval_request,model_approval_request,base.group_user,1,1,1,1
+access_approval_request_approver_id,access_approval_request_approver,model_approval_request_approver,sales_team.group_sale_salesman,1,1,1,1

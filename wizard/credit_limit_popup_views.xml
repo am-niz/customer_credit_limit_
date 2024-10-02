@@ -1,0 +1,56 @@
+<odoo>
+    <data>
+        <record id="credit_limit_popup_view" model="ir.ui.view">
+            <field name="name">credit.limit.popup.wizard</field>
+            <field name="model">sale.order.wizard</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="credit_limit"/>
+                            <field name="unpaid_amt"/>
+                            <field name="order_amt"/>
+                            <field name="exceed_amt"/>
+                            <field name="has_pending_invoices" invisible="1"/>
+                            <field name="has_uninvoiced_orders" invisible="1"/>
+                        </group>
+                        <group>
+                            <!-- Group for Pending Invoices -->
+                            <group colspan="2" invisible="not has_pending_invoices">
+                                <separator string="Pending Invoices" colspan="2"/>
+                                <field name="account_move_line_ids" nolabel="1" colspan="2">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="customer"/>
+                                        <field name="invoice_date"/>
+                                        <field name="due_date"/>
+                                        <field name="total"/>
+                                        <field name="payment_state"/>
+                                    </tree>
+                                </field>
+                            </group>
+
+                            <!-- Group for Uninvoiced Orders -->
+                            <group colspan="4" invisible="not has_uninvoiced_orders">
+                                <separator string="Uninvoiced Orders" colspan="4"/>
+                                <field name="sale_order_ids" nolabel="1" colspan="4">
+                                    <tree>
+                                        <field name="number"/>
+                                        <field name="order_date"/>
+                                        <field name="customer"/>
+                                        <field name="salesperson"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Exceed Limit" name="action_exceed_limit" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

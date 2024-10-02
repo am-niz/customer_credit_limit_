@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="credit_limit_exceed_request_email_template" model="mail.template">
+            <field name="name">Credit Limit Exceed Request</field>
+            <field name="model_id" ref="model_approval_request"/>
+            <field name="subject">Credit Limit Exceed Request for {{ object.partner_id.name }}</field>
+            <field name="email_from">{{ object.request_owner_id.login }}</field>
+            <field name="email_to">{{ object.approver_ids[0].user_id.login }}</field>
+            <field name="body_html" type="html">
+                <div style="margin: 0px; padding: 0px;">
+                    <p>Dear <t t-out="object.approver_ids[0].user_id.name"/>,</p>
+                    <p>A request to exceed the credit limit has been submitted for your approval:</p>
+                    <ul>
+                        <li>Customer: <t t-out="object.partner_id.name"/></li>
+                        <li>Credit Limit: <t t-out="object.credit_limit"/></li>
+                        <li>Exceed Amount: <t t-out="object.exceed_amount"/></li>
+                        <li>Requestor: <t t-out="object.request_owner_id.name"/></li>
+                    </ul>
+                    <t t-if="object.sale_order_id">
+                        You can view the related sale order
+                        <a t-att-href="'/web#id=%s&amp;model=approval.request&amp;view_type=form' % object.id">here</a>.
+                    </t>
+                    <t t-else="">
+                        No Sale Order associated.
+                    </t>
+                    <p>Thank you,<br/><t t-out="object.request_owner_id.name"/></p>
+                </div>
+            </field>
+        </record>
+    </data>
+</odoo>
