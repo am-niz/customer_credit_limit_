@@ -2,10 +2,10 @@
 {
     'name': "customer_credit_limit",
 
-    'summary': "Short (1 phrase/line) summary of the module's purpose",
+    'summary': "The module facilitates putting spending limits for the customers",
 
     'description': """
-Long description of module's purpose
+This module facilitates putting spending limits for the customers and the specified manager can approve or reject the credit limit exceed request 
     """,
 
     'author': "My Company",
